@@ -1,14 +1,14 @@
 package com.zagrouta.backend.entity;
 
-// import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
-@Table(name = "services") // اسم الجدول في الداتابيز
+@Table(name = "services")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -19,23 +19,22 @@ public class ServiceEntity {
     private Long id;
 
     @Column(nullable = false)
-    private String name; // اسم الخدمة (مثلاً: باكيدج زفاف كامل)
+    private String name;
 
-    @Column(columnDefinition = "TEXT") // عشان الوصف ممكن يكون طويل
+    @Column(columnDefinition = "TEXT")
     private String description;
 
     @Column(nullable = false)
-    private Double price; // سعر الخدمة
+    private Double price;
 
-    private String location; // المحافظة أو المنطقة
+    private String location;
 
-    private String imageUrl; // (اختياري) لو هنرفع صورة للخدمة مستقبلاً
+    private String imageUrl;
 
-    // --- علاقة الربط مع اليوزر ---
-    // هنا بنقول إن الخدمة دي "بتاعة" يوزر معين
+    // --- تعديل "التعويذة" هنا عشان البيانات تظهر في Postman ---
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @com.fasterxml.jackson.annotation.JsonIgnore // 👈 دي هتمنع ظهور اليوزر في الرد وتريحنا من كل مشاكله
-    @lombok.ToString.Exclude  // 👈 ودي عشان تمنع لومبوك إنه يعمل مشكلة وهو بيطبع البيانات
+    @JsonIgnoreProperties({"password", "createdAt", "hibernateLazyInitializer", "handler"})
+    @ToString.Exclude
     private User user;
 }
