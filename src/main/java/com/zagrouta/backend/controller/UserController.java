@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*") // دي بتسمح لأي فرونت إند إنه يكلم الباك إند بتاعنا
 @RestController // بنعرف سبرينج إن ده كلاس بيستقبل طلبات ويب
 @RequestMapping("/api/users") // أي رابط هيبدأ بـ /api/users هيجي هنا
 public class UserController {

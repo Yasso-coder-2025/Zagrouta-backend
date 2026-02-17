@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
+@CrossOrigin(origins = "*") // دي بتسمح لأي فرونت إند إنه يكلم الباك إند بتاعنا
 @RestController
 @RequestMapping("/api/services") // أي رابط هيبدأ بـ /api/services هيجي هنا
 public class ServiceController {
